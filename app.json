@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "DevStar1",
+    "slug": "DevStar1",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      "expo-localization"
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
