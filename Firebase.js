@@ -8,8 +8,9 @@ import { getAuth } from "firebase/auth"; // Import auth module
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+//Tika mainīts, jo ir public
 const firebaseConfig = {
-    apiKey: "AIzaSyBCpk03VElobbjAKuxeUTa-isDtjnzd4Oc",
+    apiKey: "1AIzaSyBCpk03VElobbjAKuxeUTa-isDtjnzd4Oc",
     authDomain: "dev1-4cd5e.firebaseapp.com",
     projectId: "dev1-4cd5e",
     storageBucket: "dev1-4cd5e.appspot.com",
