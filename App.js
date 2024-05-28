@@ -332,7 +332,7 @@ const REstyles = StyleSheet.create({
   },
 });
 
-// RulesScreen Component
+
 const RulesScreen = ({ route, navigation }) => {
   const { topic } = route.params;
   const [backgroundImageUrl, setBackgroundImageUrl] = useState(null);
@@ -502,7 +502,7 @@ const Rstyles = StyleSheet.create({
   }
 });
 
-// StartLoginScreen Component
+
 const StartLoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -693,7 +693,7 @@ const Lstyles = StyleSheet.create({
     color: '#000000',
   },
 });
-// UserInterestScreen Component
+
 const UserInterestScreen = ({ navigation }) => {
   const [interests, setInterests] = useState('');
   const [gender, setGender] = useState('');
@@ -907,7 +907,6 @@ const Ustyles = StyleSheet.create({
   },
 });
 
-// DeveloperLoginScreen Component
 const DeveloperLoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -1292,7 +1291,6 @@ const Wstyles = StyleSheet.create({
   }
 });
 
-// Profile Component
 const Profile = ({ navigation }) => {
   const [topics, setTopics] = useState([]);
   const [backgroundImageUrl, setBackgroundImageUrl] = useState(null);
@@ -1484,7 +1482,6 @@ const Pstyles = StyleSheet.create({
   },
 });
 
-// CommentScreen Component
 
 const CommentScreen = ({ navigation }) => {
   const db = getFirestore();
@@ -1528,13 +1525,13 @@ const CommentScreen = ({ navigation }) => {
       }
     };
 
-    // Fetch the topic image URL
+    
     const fetchTopicImageUrl = async () => {
       const storage = getStorage();
       const topicImageRef = ref(storage, 'RedditTopic/images_TY7oOSetBSxcRUfG73Gg.webp');
       try {
         const url = await getDownloadURL(topicImageRef);
-        console.log('Topic Image URL:', url); // Added log for the topic image URL
+        console.log('Topic Image URL:', url); 
         setTopicImageUrl(url);
       } catch (error) {
         console.error("Failed to fetch topic image URL:", error);
@@ -1561,15 +1558,15 @@ const CommentScreen = ({ navigation }) => {
       }
     });
 
-    // Real-time updates for comments and their votes
+    
     const commentsRef = collection(topicRef, 'comments');
     const commentsQuery = query(commentsRef, orderBy('timestamp', 'desc'));
     const unsubscribeComments = onSnapshot(commentsQuery, (snapshot) => {
       const commentsData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       setComments(commentsData);
-      setCommentCount(snapshot.size);  // Update comment count
+      setCommentCount(snapshot.size);  
 
-      // Set up listeners for votes on each comment
+      
       snapshot.docs.forEach(doc => {
         const commentId = doc.id;
         const votesRef = collection(doc.ref, 'votes');
@@ -1663,7 +1660,7 @@ const CommentScreen = ({ navigation }) => {
 
     try {
       const userId = auth.currentUser.uid;
-      const userEmail = auth.currentUser.email; // Get user's email
+      const userEmail = auth.currentUser.email; 
       const reportRef = doc(db, 'specialTopics', topicId, 'reports', userId);
       await setDoc(reportRef, { reported: true, timestamp: new Date(), userEmail }, { merge: true });
       showToast(intl.formatMessage({ id: 'Thanks For Completing The Survey' }));
@@ -1681,7 +1678,7 @@ const CommentScreen = ({ navigation }) => {
 
     try {
       const userId = auth.currentUser.uid;
-      const userEmail = auth.currentUser.email; // Get user's email
+      const userEmail = auth.currentUser.email; 
       const reportRef = doc(db, 'specialTopics', topicId, 'comments', commentId, 'reports', userId);
       await setDoc(reportRef, { reported: true, timestamp: new Date(), userEmail }, { merge: true });
       showToast(intl.formatMessage({ id: 'Thanks For Completing The Survey' }));
@@ -1830,7 +1827,7 @@ const CSstyles = StyleSheet.create({
     height: '100%',
   },
   container: {
-    flexGrow: 1, // Ensure the container can grow to accommodate content
+    flexGrow: 1, 
     backgroundColor: '#dae0e6',
     padding: 10,
   },
@@ -1939,7 +1936,6 @@ const BAD_WORDS = [
   'pists', 'sūds', 'mauka', 'dirst', 'pidars', 'dirsā', 'pakaļa', 'mātepisējs', 'kuce', 'mīzt', 'dirsa', 'jobans', 'sūkāt', 'pizda', 'pizģets', 'pidariņš', 'dirsiens', 'dauņi', 'kropļi', 'maukas', 'mīzējs', 'dirsāgrūdejs'
 ];
 
-// Topic Component
 
 const Topic = ({ route, navigation }) => {
   const { topic } = route.params;
@@ -2065,7 +2061,6 @@ const Topic = ({ route, navigation }) => {
           userEmail: user.email
         });
 
-        // Check if this is the user's first comment
         const userRef = doc(db, 'users', user.uid);
         const userDoc = await getDoc(userRef);
         if (userDoc.exists() && !userDoc.data().hasWrittenFirstComment) {
@@ -2244,7 +2239,7 @@ const Tstyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingBottom: 20, // Add padding at the bottom
+    paddingBottom: 20, 
   },
   topSection: {
     flexDirection: 'row',
@@ -2303,7 +2298,7 @@ const Tstyles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'white',
     paddingVertical: 10,
-    width: '100%', // Match the width of the comments container
+    width: '100%', 
   },
   commentPoster: {
     fontWeight: 'bold',
@@ -2317,12 +2312,12 @@ const Tstyles = StyleSheet.create({
     color: 'white',
   },
   commentsContainer: {
-    width: '80%', // Match the width of the input field
-    maxHeight: 200, // Set a maximum height
-    marginBottom: 20, // Add some space at the bottom
+    width: '80%', 
+    maxHeight: 200, 
+    marginBottom: 20, 
   },
   commentsList: {
-    width: '100%', // Ensure the list takes the full width
+    width: '100%', 
   },
   surveyPopup: {
     position: 'absolute',
@@ -2504,7 +2499,7 @@ const Sstyles = StyleSheet.create({
 
 
 
-// DeveloperView Component
+
 const DeveloperView = ({ navigation }) => {
   const [topicName, setTopicName] = useState('');
   const [topicDescription, setTopicDescription] = useState('');
